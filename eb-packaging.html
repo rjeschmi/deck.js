@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Your deck.js Presentation</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/swiss.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide" id="title">
+      <h1>Packaging in Easybuild</h1>
+    </section>
+    <section class="slide" id="whoami">
+      <h2>Who am I?</h2>
+        <p>
+            Robert Schmidt<br/>
+            Systems Administrator<br/>
+            Ottawa Hospital Research Institute</br>
+            Bioinformatics Core Facility</br>
+            Ottawa, Canada
+        </p>
+    </section>
+
+    <section class="slide" id="why">
+        <h2>Why package in EasyBuild?</h2>
+        <p>It is a good question, why bother doing this at all?</p>
+        <ul>
+            <li class="slide" id="because">
+                Because we are used to it
+            </li>
+            <li class="slide" id="because2">
+                To perhaps speed deployment of development images
+            </li>
+        </ul>
+
+    </section>
+
+    <section class="slide">
+      <h2>What is RPM?</h2>
+      <ul>
+        <li class="slide">
+          It is a cpio archive with some scripts
+        </li>
+        <li class="slide">
+          It is a standard for tracking installed files including tracking
+        </li>
+        <li class="slide">
+          It can potentially allow you to relocate software**
+        </li>
+
+    </section>
+
+    <section class="slide">
+      <h2>How we do it in EasyBuild</h2>
+      <ul>
+        <li>We leverage a project called FPM (for Effing Package Manager)</li>
+        <li>FPM builds an rpmbuild commandline and .spec file, defining the necessary parts of the spec file</li>
+        <li>We can take advantage of its features to also build for debian</li>
+      </ul>
+    </section>
+    <section class="slide">
+      <h2>The General Options</h2>
+      <p>Two general options to handle the path that packages will end up and <thead>
+        package naming scheme</p>
+      <pre><code>
+--package-naming-scheme=PACKAGE-NAMING-SCHEME
+        Packaging naming scheme choice (type choice; def
+        EasyBuildPNS) (choices: EasyBuildPNS)
+--packagepath=PACKAGEPATH
+        The destination path for the packages built by
+        package-tool (def /home/easybuild/.local/easybuild/packages)
+
+      </code></pre>
+
+      </section>
+      <section class="slide">
+        <h2>The packaging specific options</h2>
+        <pre><code>
+        Package options:
+          Control packaging performed by EasyBuild. (configfile section package)
+
+          --package           Enabling packaging (def False)
+          --package-release=PACKAGE-RELEASE
+                              Package release iteration number (def 1)
+          --package-tool=PACKAGE-TOOL
+                              Packaging tool to use (def fpm)
+          --package-type=PACKAGE-TYPE
+                              Type of package to generate (def rpm)
+      </code></pre>
+</section>
+    <section class="slide" id="example-basic">
+      <h2>Some examples</h2>
+
+    </section>
+
+    <section class="slide" id="example-advanced">
+      <h2>Some more advanced examples</h2>
+    </section>
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+    <!-- footer snippet -->
+    <div class="deck-footer">
+      EasyBuild/Lmod Hackathon Nov 11th 2015<br/>
+      Packaging—Robert Schmidt (Ottawa Hospital Research Institute)
+    </div>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
